@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        label 'stage-server'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                sh 'git clone https://github.com/Premmgr/demo-app.git'
+            }
+        }
+        stage('Verification') {
+            steps {
+                sh 'demo-app/verification.sh'
+                sh 'echo "Verification finished"'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo "Building..."'
+                sh 'cd demo-app ; docker-compose up -d'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo "Running tests..."'
+                sh 'curl -l localhost:90'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying..."'
+                sh 'echo "Deploy done"'
+            }
+        }
+    }
+}
