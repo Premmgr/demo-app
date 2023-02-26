@@ -8,26 +8,27 @@ pipeline {
     stages {
         stage('verification') {
             steps {
-                sh 'demo-app/verification.sh'
-                sh 'echo "verification finished"'
+                bash 'demo-app/verification.sh'
+                bash 'echo "verification finished"'
             }
         }
 	stage('Build') {
             steps {
-                sh 'echo "Building..."'
-                sh 'docker-compose up -d'
+                bash 'echo "Building..."'
+                bash 'docker-compose up -d'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Running tests..."'
-                sh 'curl -l localhost:90'
+                bash 'echo "Running tests..."'
+                bash 'curl -l localhost:90'
+		bash 'docker-compose down'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploying..."'
-                sh 'echo "deploy done"'
+                bash 'echo "Deploying..."'
+                bash 'echo "deploy done"'
             }
         }
     }
