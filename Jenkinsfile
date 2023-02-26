@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('verification') {
             steps {
-                sh './verification.sh'
+                sh 'demo-app/verification.sh'
                 sh 'echo "verification finished"'
             }
         }
