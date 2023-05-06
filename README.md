@@ -1,4 +1,4 @@
-# demo-app
+# Simple Demo app for the test
 -------------------------------------
 # Jenkins-pipeline requirements
 * docker installed on node
